@@ -8,3 +8,10 @@ export async function getAllPosts() // Define uma função assíncrona para obte
     const colecao = db.collection("posts"); // Seleciona a coleção "posts" dentro do banco de dados.
     return colecao.find().toArray(); // Retorna todos os documentos da coleção como um array.
 }
+
+export async function criarPost(novoPost) 
+{
+    const db = conexao.db("imersao"); // Seleciona o banco de dados "imersao".
+    const colecao = db.collection("posts"); // Seleciona a coleção "posts" dentro do banco de dados.
+    return colecao.insertOne(novoPost)
+}
