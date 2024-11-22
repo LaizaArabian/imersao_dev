@@ -1,6 +1,6 @@
 import express from "express"
 import multer from "multer";
-import { listarPosts, postarNovoPost, uploadImagem } from "../controler/postsController.js";
+import { listarPosts, postarNovoPost, uploadImagem } from "../controller/postsController.js";
 
 const storage = multer.diskStorage
 ({

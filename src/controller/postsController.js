@@ -1,4 +1,4 @@
-import { getAllPosts, criarPost} from "../models/postModels.js";
+import { getAllPosts, criarPost} from "../models/postsModels.js";
 import fs from "fs";
 
 export async function listarPosts(req, res) // Define uma rota GET para "/posts" com uma função assíncrona.
