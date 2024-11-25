@@ -1,4 +1,4 @@
-import { getAllPosts, criarPost} from "../models/postsModels.js";
+import { getAllPosts, criarPost, atualizarNovoPost} from "../models/postsModels.js";
 import fs from "fs";
 
 export async function listarPosts(req, res) // Define uma rota GET para "/posts" com uma função assíncrona.
@@ -22,7 +22,8 @@ export async function postarNovoPost(req, res)
     }
 }
 
-export async function uploadImagem(req, res) {
+export async function uploadImagem(req, res)
+{
     const novoPost = {
         descricao: "",
         imgUrl: req.file.originalname,
@@ -40,5 +41,27 @@ export async function uploadImagem(req, res) {
     {
         console.error(erro.message);
         res.status(500).json({"Erro":"Falha na requisição"})
+    }
+}
+
+export async function atualizarPost(req, res)
+{
+    const id = req.params.id;
+    const urlImagem = `http://localhost:3000/${id}.png`
+    const post_atualizado = 
+    {
+        imgUrl: urlImagem,
+        descricao: descricao,
+        alt: req.body.alt
+    }
+    try 
+    {
+        const postCriado = await atualizarNovoPost(id, post_atualizado);
+        res.status(200).json(postCriado);
+    } 
+    catch(erro)
+    {
+        console.error(erro.message); // devolve o erro caso não consiga o post
+        res.status(500).json({"Erro": "falha na requisição"}) // erro interno no servidor
     }
 }
